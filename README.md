@@ -4,7 +4,7 @@ NCoPEN: Topology-Informed Co-Encoding of Spectral Perturbations with Cross-Chann
 
 Figure 1: Detailed network structure of our proposed CodimNet.
 
-![](figure/image1.png)
+![](figure/image2.png)
 
 Figure 2: EEG cortical power spectral density (PSD) topographical distributions across distinct cognitive states, delineating oscillatory frequency-dependent neurophysiological divergences among HC, MCI, and AD.  
 
@@ -12,13 +12,17 @@ Figure 2: EEG cortical power spectral density (PSD) topographical distributions 
 
 ### NIRU
 
-![](figure/image1.png)
+![](figure/image3.png)
+
+Figure 3: Visualize the multi-branch structure.
+
+![](figure/image4.png)
 
 Figure 3: Visualize the multi-branch structure.
 
 ### PATMD
 
-![](figure/image1.png)
+![](figure/image5.png)
 
 Figure 4: Visualize the ND-PINN structure.
 
@@ -32,11 +36,19 @@ We run CodimNet and previous methods on a system running Ubuntu 22.04, with Pyth
 
 ### Models Evaluation Without Cross-Validation
 
+![](figure/image6.png)
+
+Figure 4: Visualize the ND-PINN structure.
+
 ![](table/table2.png)
 
 Figure 5: Comparison of CodimNet and other methods for AD diagnosis on the CAUEEG dataset using a fixed hold-out validation approach with EEG data.
 
 CodimNet attaining peak performance across key classification metrics—Acc (76.27\%), AUC (85.27\%), and Sp (88.28\%)—outperforming its closest competitor, EEGNet, with a Se enhancement of 0.29 percentage points, an F1-score improvement of 2.07 percentage points, and a G-Mean augmentation of 1.89 percentage points, indicative of its enhanced robustness in mitigating class imbalance effects intrinsic to medical datasets.
+
+![](figure/image7.png)
+
+Figure 4: Visualize the ND-PINN structure.
 
 ### Models Evaluation Using Cross-Validation
 
@@ -57,6 +69,10 @@ Figure 7: Quantitative assessment of regional contributions to AD classification
 ![](table/table5.png)
 
 Figure 8: Quantitative evaluation of model classification efficacy across AD EEG tri-classification under varying instantiations of ND-PINN.
+
+![](figure/image8.png)
+
+Figure 4: Visualize the ND-PINN structure.
 
 ### Ablation Study Of ND-PINN In Different Intermediate Layers
 
