@@ -1,12 +1,12 @@
-# NCoPEN
-NCoPEN: Topology-Informed Co-Encoding of Spectral Perturbations with Cross-Channel Interdependence Recomposition for EEG-Based Neurodegeneration Screening
+# NCoPEN: Topology-Informed Co-Encoding of Spectral Perturbations with Cross-Channel Interdependence Recomposition for EEG-Based Neurodegeneration Screening
+
 ![](figure/image1.png)
 
-Figure 1: Detailed network structure of our proposed CodimNet.
+Figure 1: Comparative depiction of functional brain connectivity and spectral distribution
 
 ![](figure/image2.png)
 
-Figure 2: EEG cortical power spectral density (PSD) topographical distributions across distinct cognitive states, delineating oscillatory frequency-dependent neurophysiological divergences among HC, MCI, and AD.  
+Figure 2: Detailed network structure of our proposed NCoPEN.
 
 ## Methods
 
@@ -14,109 +14,110 @@ Figure 2: EEG cortical power spectral density (PSD) topographical distributions 
 
 ![](figure/image3.png)
 
-Figure 3: Visualize the multi-branch structure.
+Figure 3: {Illustration of six heterogeneous feature-extraction pipelines
 
 ![](figure/image4.png)
 
-Figure 3: Visualize the multi-branch structure.
+Figure 4: NIRU: multichannel descriptors are transformed by self-attention and then recomposed via a Gaussian mixture, yielding structurally refined embeddings for downstream reconstruction.
 
 ### PATMD
 
 ![](figure/image5.png)
 
-Figure 4: Visualize the ND-PINN structure.
+Figure 5: PATMD: perturbation kernels quantify inter-channel functional deviations; spectral–graph eigenanalysis resolves principal perturbation orientations; spectral-response projection produces the fused descriptor $F_7$.
 
-
-The proposed CodimNet is an advanced model for early diagnosis of Alzheimer's disease (AD) based on EEG.  This network combines multi-branch feature extraction, designed according to the anatomical segmentation of the international 10-20 system, with the Neurodynamic Physics-Informed Neural Network (ND-PINN) to better capture the characteristics of EEG signals in AD patients.  It outperforms nine other methods on the CAUEEG dataset, achieving state-of-the-art accuracy in AD identification.
 ## Installation
 
-We run CodimNet and previous methods on a system running Ubuntu 22.04, with Python 3.8, PyTorch 2.1.0, and CUDA 12.1.
+We run NCoPEN and previous methods on a system running Ubuntu 22.04, with Python 3.8, PyTorch 2.1.0, and CUDA 12.1.
 
 ## Experiment
 
-### Models Evaluation Without Cross-Validation
+### Resting-state Parkinson Dataset
 
 ![](figure/image6.png)
 
-Figure 4: Visualize the ND-PINN structure.
+Figure 6: Baseline distribution across four EEG corpora—Thessaloniki (AD/FTD/HC), CAUEEG (CN/MCI/AD), Task-state Parkinson, and Resting-state Parkinson.
 
 ![](table/table2.png)
 
-Figure 5: Comparison of CodimNet and other methods for AD diagnosis on the CAUEEG dataset using a fixed hold-out validation approach with EEG data.
-
-CodimNet attaining peak performance across key classification metrics—Acc (76.27\%), AUC (85.27\%), and Sp (88.28\%)—outperforming its closest competitor, EEGNet, with a Se enhancement of 0.29 percentage points, an F1-score improvement of 2.07 percentage points, and a G-Mean augmentation of 1.89 percentage points, indicative of its enhanced robustness in mitigating class imbalance effects intrinsic to medical datasets.
+Table 2: Resting-state PD–HC baselines across representative EEG networks.
 
 ![](figure/image7.png)
 
-Figure 4: Visualize the ND-PINN structure.
+Figure 7: Three-dimensional t-SNE embeddings of latent features on the Resting-State Parkinson cohort (PD vs.\ HC) across ten architectures
 
-### Models Evaluation Using Cross-Validation
+### Task-Induced PD Classification
 
 ![](table/table3.png)
 
-Figure 6: Comparison of CodimNet and other methods for AD diagnosis on the non-overlapping version of the CAUEEG dataset using a four-fold cross-validation approach with EEG data.
+Table 3: Baseline classification outcomes on the task-state Parkinson’s dataset
 
-## Ablation study
-
-### Branch Ablation Study
+### Multi-Class Classification on Thessaloniki Dataset
 
 ![](table/table4.png)
 
-Figure 7: Quantitative assessment of regional contributions to AD classification efficacy through cortical branch-specific ablation analysis.
+Table 4: Quantitative assessment of regional contributions to AD classification efficacy through cortical branch-specific ablation analysis.
 
-### ND-PINN Quantitative Ablation Study
+### Large-Scale Evaluation on CAUEEG
 
 ![](table/table5.png)
 
-Figure 8: Quantitative evaluation of model classification efficacy across AD EEG tri-classification under varying instantiations of ND-PINN.
+Table 5: CAUEEG cohort, three-class CN–MCI–AD benchmark.
 
 ![](figure/image8.png)
 
-Figure 4: Visualize the ND-PINN structure.
+Figure 8: Channel-level SHAP attribution maps with the NIRU enabled (left) versus ablated (right)
 
-### Ablation Study Of ND-PINN In Different Intermediate Layers
+## Ablation study
+
+### Feature-Processing Ablation
 
 ![](table/table6.png)
 
-Figure 9: Quantitative evaluation of ND-PINN instantiation across distinct intermediate-layer constraints. 
+Table 6: Comparative ablation outcomes for the NIRU
 
-### Ablation Study Of Different Branches Of ND-PINN
+### Feature-Fusion Ablation
 
 ![](table/table7.png)
 
-Figure 10: Quantitative assessment of the impact of ND-PINN removal across distinct cortical branches on classification performance. 
+Table 7: Comparative evaluation of feature-aggregation ablations within the PATMD module
 
-### Branch Different Model Ablation Study
+### Classifier Ablation
 
 ![](table/table8.png)
 
-Figure 11: Quantitative classification performance across distinct recurrent neural network architectures instantiated within a multibranch paradigm. 
+Table 8: Performance comparison across ablated classifier configurations
 
-### ND-PINN constrained different brain rhythm Ablation Study
+![](figure/image9.png)
+
+Figure 9: Two-dimensional t-SNE embeddings of features from ablated classifiers
+
+### Feature Extraction Ablation
 
 ![](table/table9.png)
 
-Figure 12: Performance metrics of ND-PINN under differential brain rhythm constraints, evaluating the impact of rhythm-specific spectral ablation on AD EEG classification.  
+Table 9: Feature extraction ablation across backbone encoders
 
-The effectiveness of the proposed module was systematically evaluated through the four-fold cross-validation ablation experiment, and its applicability and advantages in related tasks were verified.
 
 ## Model Visualization
 
-In order to verify the effectiveness of CodimNet model in extracting EEG features from patients with Alzheimer's disease, a comparative analysis diagram and heat map including time-frequency graph, original PSD graph and ND-PINN treated PSD graph were constructed based on the hook function's forward propagation layer feature visualization technology.
+![](figure/image10.png)
 
-![](figure/image1.png)
+Figure 10: Channel–wise activation heatmaps contrasting CN and PD cohorts across six feature families
 
-Figure 13: Comparison of time-frequency spectral features of middle-layer embeddings between CodimNet and RNN.
+![](figure/image11.png)
 
-![](figure/image1.png)
+Figure 11: (a) Standardized multichannel EEG with superposed saliency weights—gray, (b) Scalp-averaged channel-importance topography,(c) Band-resolved PSD maps
 
-Figure 14: Comparison of PSD plots with and without ND-PINN.
+![](figure/image12.png)
 
-![](figure/image1.png)
+Figure 12: Top-3 discriminative EEG segments identified by the model
 
-Figure 15: The heatmap generated by CodimNet shows the neuronal activation intensity of AD, MCI, and HC.
+![](figure/image13.png)
+
+Figure 13: Decision geometry, calibration behavior, and error structure for the PD–HC classifier
 
 
 # Question
 
-if you have any questions, please contact 'zhengliang.zhang@hdu.edu.cn'
+if you have any questions, please contact 'yachen.wei@hdu.edu.cn'
